@@ -1,0 +1,91 @@
+---
+title: "Quarto template"
+author: "Jozef (ultimate nerd) Rivest"
+date: "october 16, 2025" 
+date-format: long # To have the date as text instead of 10-16-2025
+format: 
+  pdf:
+    documentclass: article # To have the same beautiful output as overleaf
+    fontsize: 12pt # To change the fontsize
+    geometry: # To adjust the margins
+      - margin=1in
+    keep-tex: true # To keep the .tex code
+
+bibliography: references.bib # The bib files for the citations
+---
+
+This document provides a short introduction to Quarto. A few tips are highlighted all along the file. If you have any questions, feel free to ask me, or to refer to [Quarto guide](https://quarto.org/docs/guide/). The best way to learn from it is either to try to replicate some parts, or to change some parts and see how the output changed.
+
+Have fun!
+
+{{< pagebreak>}}
+
+# First level header
+
+[@svolik2012] <!-- This is parentheses citation -->
+
+@svolik2012 <!-- This is a text citation -->
+
+```{r}
+dat <- mtcars
+
+hist(dat$cyl)
+```
+
+```{r}
+library(tinytable) # Super nice package for table!
+
+tt(dat)
+```
+
+You can insert math equations the same way you would do in \LaTeX. Either with the double dollar sign, or using `begin{equation} end{equation}` in a \LaTeX chunk.
+
+$$
+P(A|B) = \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|A^c)P(A^c)}
+$$
+
+```{=tex}
+\begin{equation}
+P(A|B) = \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|A^c)P(A^c)}
+\end{equation}
+```
+
+
+
+{{< pagebreak >}}
+
+# References
+
+::: {#refs}
+:::
+
+{{< pagebreak >}}
+
+# Appendix
+
+Sometimes, packages print errors, messages, and warnings. To silence them, you can add the following in the code chunk (see the second code chunk below)
+
+```{r}
+
+library(tidyverse)
+```
+
+```{r}
+#| message: false 
+#| error: false
+#| warning: false
+
+library(tidyverse)
+```
+
+{{< pagebreak >}}
+
+# Appendix 2
+
+If you want to hide the code, you can add `echo: false` to the code chunk:
+
+```{r}
+#| echo: false
+
+tt(dat)
+```
